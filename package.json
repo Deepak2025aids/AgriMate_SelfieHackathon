@@ -8,7 +8,9 @@
     "start": "node backend/server.js",
     "dev": "node backend/server.js",
     "test": "node --version && npm --version",
-    "server": "node backend/server.js"
+    "server": "node backend/server.js",
+    "build": "echo 'Build complete. Frontend ready at ./frontend'",
+    "vercel-build": "npm install && echo 'Vercel build complete'"
   },
   "keywords": [
     "agriculture",
