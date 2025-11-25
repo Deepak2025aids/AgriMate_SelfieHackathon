@@ -70,25 +70,26 @@ a:hover {
    LANGUAGE TOGGLE
    ======================================== */
 .language-toggle {
-    /* Placed inside the nav container; use inline layout to avoid overlap */
-    position: relative;
-    margin-left: 20px;
-    z-index: 995;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: max-content;
 }
 
 .lang-btn {
-    padding: 8px 15px;
+    padding: 6px 12px;
     background-color: white;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .lang-btn.active {
@@ -99,6 +100,18 @@ a:hover {
 .lang-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+}
+
+@media (max-width: 480px) {
+    .language-toggle {
+        gap: 4px;
+        margin-top: 8px;
+    }
+
+    .lang-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
 }
 
 /* ========================================
@@ -158,12 +171,14 @@ a:hover {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .nav-logo {
@@ -173,6 +188,7 @@ a:hover {
     color: white;
     font-size: 24px;
     font-weight: 700;
+    flex-shrink: 0;
 }
 
 .logo-text {
@@ -186,13 +202,12 @@ a:hover {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 1.25rem;
+    gap: 0.8rem;
     flex: 1 1 auto;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .nav-link {
@@ -200,7 +215,9 @@ a:hover {
     font-weight: 500;
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
-    padding-bottom: 5px;
+    padding: 5px 10px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -224,7 +241,22 @@ a:hover {
 }
 
 /* Mobile Menu Toggle */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 0.6rem;
+    }
+
+    .nav-link {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
 @media (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap;
+    }
+
     .nav-menu {
         display: none;
         position: absolute;
@@ -235,6 +267,8 @@ a:hover {
         flex-direction: column;
         gap: 0;
         padding: 1rem;
+        order: 3;
+        width: 100%;
     }
 
     .nav-menu.active {
@@ -243,34 +277,38 @@ a:hover {
 
     .nav-toggle {
         display: flex;
+        order: 2;
     }
 
-    /* Mobile: keep language buttons visible but compact */
     .language-toggle {
-        margin-left: 0;
-        gap: 6px;
-        /* ensure language toggle doesn't cover menu */
-        position: relative;
+        order: 4;
     }
 
     .lang-btn {
-        padding: 6px 10px;
-        font-size: 12px;
+        padding: 5px 8px;
+        font-size: 11px;
     }
 
     .nav-link {
         padding: 0.5rem;
+        display: block;
+        width: 100%;
     }
 }
 
-/* Ensure language toggle sits to the right on larger screens */
-.language-toggle {
-    margin-left: auto;
-}
+@media (max-width: 480px) {
+    .nav-logo {
+        font-size: 18px;
+    }
 
-/* Prevent nav links from wrapping text and hiding behind the language toggle */
-.nav-link {
-    white-space: nowrap;
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .lang-btn {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
 }
 
 /* Hide horizontal scrollbar visually but allow scrolling if needed */
@@ -412,16 +450,17 @@ a:hover {
    BUTTONS
    ======================================== */
 .btn {
-    padding: 12px 30px;
+    padding: 10px 24px;
     border: none;
-    border-radius: 25px;
-    font-size: 14px;
+    border-radius: 20px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -433,6 +472,74 @@ a:hover {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+.section {
+    padding: 50px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section.bg-light {
+    background-color: var(--light-color);
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+.section-desc {
+    text-align: center;
+    color: #666;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .section-desc {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
 }
 
 .btn-secondary {
